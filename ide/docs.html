@@ -1,0 +1,2626 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, minimum-scale=1" name="viewport"/>
+  <meta content="pdoc 0.10.0" name="generator"/>
+  <title>prompt_ide API documentation</title>
+  <meta content="PromptIDE SDK version 1.1." name="description"/>
+  <link as="style" crossorigin
+        href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css"
+        integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" rel="preload stylesheet">
+  <link as="style" crossorigin
+        href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css"
+        integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" rel="preload stylesheet">
+  <link as="style" crossorigin
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css"
+        rel="stylesheet preload">
+  <style>:root {
+    --highlight-color: #fe9
+  }
+
+  .flex {
+    display: flex !important
+  }
+
+  body {
+    line-height: 1.5em
+  }
+
+  #content {
+    padding: 20px
+  }
+
+  #sidebar {
+    padding: 30px;
+    overflow: hidden
+  }
+
+  #sidebar > *:last-child {
+    margin-bottom: 2cm
+  }
+
+  .http-server-breadcrumbs {
+    font-size: 130%;
+    margin: 0 0 15px 0
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right
+  }
+
+  #footer p {
+    margin: 0 0 0 1em;
+    display: inline-block
+  }
+
+  #footer p:last-child {
+    margin-right: 30px
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300
+  }
+
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0
+  }
+
+  h3 {
+    font-size: 1.4em;
+    margin: 25px 0 10px 0
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%
+  }
+
+  h1:target, h2:target, h3:target, h4:target, h5:target, h6:target {
+    background: var(--highlight-color);
+    padding: .2em 0
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out
+  }
+
+  a:hover {
+    color: #e82
+  }
+
+  .title code {
+    font-weight: bold
+  }
+
+  h2[id^="header-"] {
+    margin-top: 2em
+  }
+
+  .ident {
+    color: #900
+  }
+
+  pre code {
+    background: #f8f8f8;
+    font-size: .8em;
+    line-height: 1.4em
+  }
+
+  code {
+    background: #f2f2f1;
+    padding: 1px 4px;
+    overflow-wrap: break-word
+  }
+
+  h1 code {
+    background: transparent
+  }
+
+  pre {
+    background: #f8f8f8;
+    border: 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 1ex
+  }
+
+  #http-server-module-list {
+    display: flex;
+    flex-flow: column
+  }
+
+  #http-server-module-list div {
+    display: flex
+  }
+
+  #http-server-module-list dt {
+    min-width: 10%
+  }
+
+  #http-server-module-list p {
+    margin-top: 0
+  }
+
+  .toc ul, #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+  }
+
+  #index code {
+    background: transparent
+  }
+
+  #index h3 {
+    border-bottom: 1px solid #ddd
+  }
+
+  #index ul {
+    padding: 0
+  }
+
+  #index h4 {
+    margin-top: .6em;
+    font-weight: bold
+  }
+
+  @media (min-width: 200ex) {
+    #index .two-column {
+      column-count: 2
+    }
+  }
+
+  @media (min-width: 300ex) {
+    #index .two-column {
+      column-count: 3
+    }
+  }
+
+  dl {
+    margin-bottom: 2em
+  }
+
+  dl dl:last-child {
+    margin-bottom: 4em
+  }
+
+  dd {
+    margin: 0 0 1em 3em
+  }
+
+  #header-classes + dl > dd {
+    margin-bottom: 3em
+  }
+
+  dd dd {
+    margin-left: 2em
+  }
+
+  dd p {
+    margin: 10px 0
+  }
+
+  .name {
+    background: #eee;
+    font-weight: bold;
+    font-size: .85em;
+    padding: 5px 10px;
+    display: inline-block;
+    min-width: 40%
+  }
+
+  .name:hover {
+    background: #e0e0e0
+  }
+
+  dt:target .name {
+    background: var(--highlight-color)
+  }
+
+  .name > span:first-child {
+    white-space: nowrap
+  }
+
+  .name.class > span:nth-child(2) {
+    margin-left: .4em
+  }
+
+  .inherited {
+    color: #999;
+    border-left: 5px solid #eee;
+    padding-left: 1em
+  }
+
+  .inheritance em {
+    font-style: normal;
+    font-weight: bold
+  }
+
+  .desc h2 {
+    font-weight: 400;
+    font-size: 1.25em
+  }
+
+  .desc h3 {
+    font-size: 1em
+  }
+
+  .desc dt code {
+    background: inherit
+  }
+
+  .source summary, .git-link-div {
+    color: #666;
+    text-align: right;
+    font-weight: 400;
+    font-size: .8em;
+    text-transform: uppercase
+  }
+
+  .source summary > * {
+    white-space: nowrap;
+    cursor: pointer
+  }
+
+  .git-link {
+    color: inherit;
+    margin-left: 1em
+  }
+
+  .source pre {
+    max-height: 500px;
+    overflow: auto;
+    margin: 0
+  }
+
+  .source pre code {
+    font-size: 12px;
+    overflow: visible
+  }
+
+  .hlist {
+    list-style: none
+  }
+
+  .hlist li {
+    display: inline
+  }
+
+  .hlist li:after {
+    content: ',\2002'
+  }
+
+  .hlist li:last-child:after {
+    content: none
+  }
+
+  .hlist .hlist {
+    display: inline;
+    padding-left: 1em
+  }
+
+  img {
+    max-width: 100%
+  }
+
+  td {
+    padding: 0 .5em
+  }
+
+  .admonition {
+    padding: .1em .5em;
+    margin-bottom: 1em
+  }
+
+  .admonition-title {
+    font-weight: bold
+  }
+
+  .admonition.note, .admonition.info, .admonition.important {
+    background: #aef
+  }
+
+  .admonition.todo, .admonition.versionadded, .admonition.tip, .admonition.hint {
+    background: #dfd
+  }
+
+  .admonition.warning, .admonition.versionchanged, .admonition.deprecated {
+    background: #fd4
+  }
+
+  .admonition.error, .admonition.danger, .admonition.caution {
+    background: lightpink
+  }</style>
+  <style media="screen and (min-width: 700px)">@media screen and (min-width: 700px) {
+    #sidebar {
+      width: 30%;
+      height: 100vh;
+      overflow: auto;
+      position: sticky;
+      top: 0
+    }
+
+    #content {
+      width: 70%;
+      max-width: 100ch;
+      padding: 3em 4em;
+      border-left: 1px solid #ddd
+    }
+
+    pre code {
+      font-size: 1em
+    }
+
+    .item .name {
+      font-size: 1em
+    }
+
+    main {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end
+    }
+
+    .toc ul ul, #index ul {
+      padding-left: 1.5em
+    }
+
+    .toc > ul > li {
+      margin-top: .5em
+    }
+  }</style>
+  <style media="print">@media print {
+    #sidebar h1 {
+      page-break-before: always
+    }
+
+    .source {
+      display: none
+    }
+  }
+
+  @media print {
+    * {
+      background: transparent !important;
+      color: #000 !important;
+      box-shadow: none !important;
+      text-shadow: none !important
+    }
+
+    a[href]:after {
+      content: " (" attr(href) ")";
+      font-size: 90%
+    }
+
+    a[href][title]:after {
+      content: none
+    }
+
+    abbr[title]:after {
+      content: " (" attr(title) ")"
+    }
+
+    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+      content: ""
+    }
+
+    pre, blockquote {
+      border: 1px solid #999;
+      page-break-inside: avoid
+    }
+
+    thead {
+      display: table-header-group
+    }
+
+    tr, img {
+      page-break-inside: avoid
+    }
+
+    img {
+      max-width: 100% !important
+    }
+
+    @page {
+      margin: 0.5cm
+    }
+
+    p, h2, h3 {
+      orphans: 3;
+      widows: 3
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid
+    }
+  }</style>
+  <script crossorigin defer
+          integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+  <script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+  <article id="content">
+    <header>
+      <h1 class="title">Module <code>prompt_ide</code></h1>
+    </header>
+    <section id="section-intro">
+      <p>PromptIDE SDK version 1.1.</p>
+      <details class="source">
+        <summary>
+          <span>Expand source code</span>
+        </summary>
+        <pre><code class="python">&#34;&#34;&#34;PromptIDE SDK version 1.1.&#34;&#34;&#34;
+
+import asyncio
+import contextlib
+import contextvars
+import dataclasses
+import random
+import time
+import uuid
+from typing import Any, Optional, Sequence, Union
+
+_USER = 1
+_MODEL = 2
+
+
+@dataclasses.dataclass(frozen=True)
+class Token:
+    &#34;&#34;&#34;A token is an element of our vocabulary that has a unique index and string representation.
+
+    A token can either be sampled from a model or provided by the user (i.e. prompted). If the token
+    comes from the mode, we may have additional metadata such as its sampling probability, the
+    attention pattern used when sampling the token, and alternative tokens.
+    &#34;&#34;&#34;
+
+    # The integer representation of the token. Corresponds to its index in the vocabulary.
+    token_id: int
+    # The string representation of the token. Corresponds to its value in the vocabulary.
+    token_str: str
+    # If this token was sampled, the token sampling probability. 0 if not sampled.
+    prob: float
+    # If this token was sampled, alternative tokens that could have been sampled instead.
+    top_k: list[&#34;Token&#34;]
+    # If this token was sampled with the correct options, the token&#39;s attention pattern. The array
+    # contains one value for every token in the context.
+    attn_weights: list[float]
+    # 1 if this token was created by a user and 2 if it was created by model.
+    token_type: int
+
+    @classmethod
+    def from_proto_dict(cls, values: dict) -&gt; &#34;Token&#34;:
+        &#34;&#34;&#34;Converts the protobuffer dictionary to a `Token` instance.&#34;&#34;&#34;
+        return Token(
+            token_id=values[&#34;finalLogit&#34;][&#34;tokenId&#34;],
+            token_str=values[&#34;finalLogit&#34;][&#34;stringToken&#34;],
+            prob=values[&#34;finalLogit&#34;][&#34;prob&#34;],
+            top_k=[
+                Token.from_proto_dict(
+                    {&#34;finalLogit&#34;: l, &#34;topK&#34;: [], &#34;attention&#34;: [], &#34;tokenType&#34;: _MODEL}
+                )
+                for l in values[&#34;topK&#34;]
+            ],
+            attn_weights=values[&#34;attention&#34;],
+            token_type=values[&#34;tokenType&#34;],
+        )
+
+
+async def user_input(text: str) -&gt; str | None:
+    &#34;&#34;&#34;Asks the user to enter something into the text field shown in the completion dialog.
+
+    Args:
+        text: The placeholder text displayed in the text field before the user enters a response.
+
+    Returns:
+        A string if the user actually entered some text and `None` if the user pressed `cancel`.
+    &#34;&#34;&#34;
+    args = pyodide.ffi.create_proxy(str(text))
+    response = await js.userInput(args)
+    response = response.to_py()
+
+    if &#34;cancelled&#34; in response:
+        return None
+    return response[&#34;text&#34;]
+
+
+@dataclasses.dataclass
+class SampleResult:
+    &#34;&#34;&#34;Holds the results of a sampling call.&#34;&#34;&#34;
+
+    # The actual request made to the sampling API. Note that these fields may be unstable and are
+    # subject to change in the future.
+    request: dict = dataclasses
+
+    # The number of tokens sampled.
+    tokens: list[Token] = dataclasses.field(default_factory=list)
+    # When sampling was started.
+    start_time: float = dataclasses.field(default_factory=time.time)
+    # Time when the first token was added.
+    first_token_time: Optional[float] = None
+    # When sampling finished.
+    end_time: Optional[float] = None
+
+    def as_string(self) -&gt; str:
+        &#34;&#34;&#34;Returns a string representation of this context.&#34;&#34;&#34;
+        return &#34;&#34;.join(t.token_str for t in self.tokens)
+
+    def append(self, token: Token):
+        &#34;&#34;&#34;Adds a token to the result and reports progress in the terminal.&#34;&#34;&#34;
+        self.tokens.append(token)
+        self.end_time = time.time()
+        if len(self.tokens) == 1:
+            self.first_token_time = time.time()
+            duration = (self.first_token_time - self.start_time) * 1000
+            print(f&#34;Sampled first token after {duration:1.2f}ms.&#34;)
+        elif (len(self.tokens) + 1) % 10 == 0:
+            self.print_progress()
+
+    def print_progress(self):
+        &#34;&#34;&#34;Prints the sampling progress to stdout.&#34;&#34;&#34;
+        if len(self.tokens) &gt; 1:
+            duration = self.end_time - self.first_token_time
+            speed = (len(self.tokens) - 1) / duration
+            print(f&#34;Sampled {len(self.tokens)} tokens. &#34; f&#34;{speed:1.2f} tokens/s&#34;)
+
+
+def _parse_input_token(token: Union[int, str]) -&gt; dict:
+    &#34;&#34;&#34;Converts the argument to an `InputToken` proto.&#34;&#34;&#34;
+    if isinstance(token, int):
+        return {&#34;tokenId&#34;: token}
+    else:
+        return {&#34;stringToken&#34;: token}
+
+
+@dataclasses.dataclass
+class Context:
+    &#34;&#34;&#34;A context is a sequence of tokens that are used as prompt when sampling from the model.&#34;&#34;&#34;
+
+    # The context ID.
+    context_id: str = dataclasses.field(default_factory=lambda: str(uuid.uuid4()))
+    # The body of this context is a sequence of tokens and child-contexts. The reasons we use a
+    # joint body field instead of separate fields is that we want to render the child contexts
+    # relative to the tokens of the parent context.
+    body: list[Union[Token, &#34;Context&#34;]] = dataclasses.field(default_factory=list)
+    # The parent context if this is not the root context.
+    parent: Optional[&#34;Context&#34;] = None
+    # The seed used for the next call to `sample`.
+    next_rng_seed: int = 0
+    # Name of the model to use. The model name is tied to the context because different models can
+    # use different tokenizers.
+    model_name: str = &#34;&#34;
+
+    # If this context has been manually entered, the reset token to reset the global context
+    # variable.
+    _reset_token: Any = None
+
+    def __post_init__(self):
+        &#34;&#34;&#34;Sends this context to the UI thread to be displayed in the rendering dialogue.&#34;&#34;&#34;
+        if self.parent is not None:
+            self.parent.body.append(self)
+
+        request = {
+            &#34;contextId&#34;: self.context_id,
+            &#34;parent&#34;: self.parent.context_id if self.parent else &#34;&#34;,
+        }
+        asyncio.get_event_loop().run_until_complete(
+            js.createContext(pyodide.ffi.create_proxy(request))
+        )
+
+    def select_model(self, model_name: str):
+        &#34;&#34;&#34;Selects the model name for this context.
+
+        The model name can only be set before any tokens have been added to this context.
+
+        Args:
+            model_name: Name of the model to use.
+        &#34;&#34;&#34;
+        if self.tokens:
+            raise RuntimeError(
+                &#34;Cannot change the model name of a non-empty context. A context &#34;
+                &#34;stores token sequences and different models may use different &#34;
+                &#34;tokenizers. Hence, using tokens across models leads to undefined &#34;
+                &#34;behavior. If you want to use multiple models in the same prompt, &#34;
+                &#34;consider using a @prompt_fn.&#34;
+            )
+        self.model_name = model_name
+
+    async def _tokenize(self, text: str) -&gt; list[dict]:
+        &#34;&#34;&#34;Same as `tokenize` but returns the raw proto dicts.&#34;&#34;&#34;
+        # Nothing to do if the text is empty.
+        if not text:
+            return []
+        print(f&#34;Tokenizing prompt with {len(text)} characters.&#34;)
+        result = await js.tokenize(
+            pyodide.ffi.create_proxy(
+                {
+                    &#34;text&#34;: text,
+                    &#34;modelName&#34;: self.model_name,
+                }
+            )
+        )
+        result = result.to_py()
+        compression = (1 - len(result) / len(text)) * 100
+        print(
+            f&#34;Tokenization done. {len(result)} tokens detected (Compression of {compression:.1f}%).&#34;
+        )
+
+        return result
+
+    async def tokenize(self, text: str) -&gt; list[Token]:
+        &#34;&#34;&#34;Tokenizes the given text and returns a list of individual tokens.
+
+        Args:
+            text: Text to tokenize.
+
+        Returns:
+            List of tokens. The log probability on the logit is initialized to 0.
+        &#34;&#34;&#34;
+        result = await self._tokenize(text)
+        return [Token.from_proto_dict(d) for d in result]
+
+    @property
+    def tokens(self) -&gt; Sequence[Token]:
+        &#34;&#34;&#34;Returns the tokens stored in this context.&#34;&#34;&#34;
+        return [t for t in self.body if isinstance(t, Token)]
+
+    @property
+    def children(self) -&gt; Sequence[&#34;Context&#34;]:
+        &#34;&#34;&#34;Returns all child contexts.&#34;&#34;&#34;
+        return [c for c in self.body if isinstance(c, Context)]
+
+    def as_string(self) -&gt; str:
+        &#34;&#34;&#34;Returns a string representation of this context.&#34;&#34;&#34;
+        return &#34;&#34;.join(t.token_str for t in self.tokens)
+
+    def as_token_ids(self) -&gt; list[int]:
+        &#34;&#34;&#34;Returns a list of token IDs stored in this context.&#34;&#34;&#34;
+        return [t.token_id for t in self.tokens]
+
+    async def prompt(self, text: str, strip: bool = False) -&gt; Sequence[Token]:
+        &#34;&#34;&#34;Tokenizes the argument and adds the tokens to the context.
+
+        Args:
+            text: String to tokenize and add to the context.
+            strip: If true, any whitespace surrounding `prompt` will be stripped.
+
+        Returns:
+            Tokenized string.
+        &#34;&#34;&#34;
+        if strip:
+            text = text.strip()
+        token_protos = await self._tokenize(text)
+
+        request = {
+            &#34;contextId&#34;: self.context_id,
+            &#34;tokens&#34;: token_protos,
+        }
+        await js.pushTokens(pyodide.ffi.create_proxy(request))
+
+        tokens = [Token.from_proto_dict(t) for t in token_protos]
+        self.body.extend(tokens)
+        return tokens
+
+    def randomize_rng_seed(self) -&gt; int:
+        &#34;&#34;&#34;Samples a new RNG seed and returns it.&#34;&#34;&#34;
+        self.next_rng_seed = random.randint(0, 100000)
+        return self.next_rng_seed
+
+    def create_context(self) -&gt; &#34;Context&#34;:
+        &#34;&#34;&#34;Creates a new context and adds it as child context.&#34;&#34;&#34;
+        child = Context(
+            parent=self, next_rng_seed=self._get_next_rng_seed(), model_name=self.model_name
+        )
+        return child
+
+    def _get_next_rng_seed(self) -&gt; int:
+        &#34;&#34;&#34;Returns the next RNG seed.&#34;&#34;&#34;
+        self.next_rng_seed += 1
+        return self.next_rng_seed - 1
+
+    async def sample(
+        self,
+        max_len: int = 256,
+        temperature: float = 1.0,
+        nucleus_p: float = 0.7,
+        stop_tokens: Optional[list[str]] = None,
+        stop_strings: Optional[list[str]] = None,
+        rng_seed: Optional[int] = None,
+        add_to_context: bool = True,
+        return_attention: bool = False,
+        allowed_tokens: Optional[Sequence[Union[int, str]]] = None,
+        disallowed_tokens: Optional[Sequence[Union[int, str]]] = None,
+        augment_tokens: bool = True,
+    ) -&gt; SampleResult:
+        &#34;&#34;&#34;Generates a model response based on the current prompt.
+
+        The current prompt consists of all text that has been added to the prompt either since the
+        beginning of the program or since the last call to `clear_prompt`.
+
+        Args:
+            max_len: Maximum number of tokens to generate.
+            temperature: Temperature of the final softmax operation. The lower the temperature, the
+                lower the variance of the token distribution. In the limit, the distribution collapses
+                onto the single token with the highest probability.
+            nucleus_p: Threshold of the Top-P sampling technique: We rank all tokens by their
+                probability and then only actually sample from the set of tokens that ranks in the
+                Top-P percentile of the distribution.
+            stop_tokens: A list of strings, each of which will be mapped independently to a single
+                token. If a string does not map cleanly to one token, it will be silently ignored.
+                If the network samples one of these tokens, sampling is stopped and the stop token
+                *is not* included in the response.
+            stop_strings: A list of strings. If any of these strings occurs in the network output,
+                sampling is stopped but the string that triggered the stop *will be* included in the
+                response. Note that the response may be longer than the stop string. For example, if
+                the stop string is &#34;Hel&#34; and the network predicts the single-token response &#34;Hello&#34;,
+                sampling will be stopped but the response will still read &#34;Hello&#34;.
+            rng_seed: See of the random number generator used to sample from the model outputs.
+            add_to_context: If true, the generated tokens will be added to the context.
+            return_attention: If true, returns the attention mask. Note that this can significantly
+                increase the response size for long sequences.
+            allowed_tokens: If set, only these tokens can be sampled. Invalid input tokens are
+                ignored. Only one of `allowed_tokens` and `disallowed_tokens` must be set.
+            disallowed_tokens: If set, these tokens cannot be sampled. Invalid input tokens are
+                ignored. Only one of `allowed_tokens` and `disallowed_tokens` must be set.
+            augment_tokens: If true, strings passed to `stop_tokens`, `allowed_tokens` and
+                `disallowed_tokens` will be augmented to include both the passed token and the
+                version with leading whitespace. This is useful because most words have two
+                corresponding vocabulary entries: one with leading whitespace and one without.
+
+        Returns:
+            The generated text.
+        &#34;&#34;&#34;
+        if max_len is None and not stop_tokens:
+            raise ValueError(&#34;Must provide either max_len or stop_tokens when calling `generate`.&#34;)
+
+        if rng_seed is None:
+            rng_seed = self._get_next_rng_seed()
+
+        if max_len is not None:
+            print(
+                f&#34;Generating {max_len} tokens [seed={rng_seed}, temperature={temperature}, &#34;
+                f&#34;nucleus_p={nucleus_p}, stop_tokens={stop_tokens}, stop_strings={stop_strings}].&#34;
+            )
+
+        if augment_tokens:
+            if stop_tokens:
+                stop_tokens = stop_tokens + [f&#34;▁{t}&#34; for t in stop_tokens]
+            if allowed_tokens:
+                allowed_tokens = list(allowed_tokens) + [
+                    f&#34;▁{t}&#34; for t in allowed_tokens if isinstance(t, str) and not t.startswith(&#34;▁&#34;)
+                ]
+            if disallowed_tokens:
+                disallowed_tokens = list(disallowed_tokens) + [
+                    f&#34;▁{t}&#34;
+                    for t in disallowed_tokens
+                    if isinstance(t, str) and not t.startswith(&#34;▁&#34;)
+                ]
+
+        request = {
+            &#34;prompt&#34;: self.as_token_ids(),
+            &#34;settings&#34;: {
+                &#34;maxLen&#34;: max_len or 0,
+                &#34;temperature&#34;: temperature,
+                &#34;nucleusP&#34;: nucleus_p,
+                &#34;stopTokens&#34;: stop_tokens or [],
+                &#34;stopStrings&#34;: stop_strings or [],
+                &#34;rngSeed&#34;: rng_seed,
+                &#34;allowedTokens&#34;: [_parse_input_token(t) for t in allowed_tokens or []],
+                &#34;disallowedTokens&#34;: [_parse_input_token(t) for t in disallowed_tokens or []],
+            },
+            &#34;returnAttention&#34;: return_attention,
+            &#34;modelName&#34;: self.model_name,
+        }
+
+        args = pyodide.ffi.create_proxy(request)
+        iterator = js.generate(args)
+
+        result = SampleResult(request)
+
+        while True:
+            obj = await iterator.next()
+            if obj.done:
+                break
+
+            token_proto = obj.value.to_py()
+            result.append(Token.from_proto_dict(token_proto))
+
+            if add_to_context:
+                self.body.append(result.tokens[-1])
+
+            # Sync the token to the UI thread.
+            request = {
+                &#34;contextId&#34;: self.context_id,
+                &#34;tokens&#34;: [token_proto],
+            }
+            await js.pushTokens(pyodide.ffi.create_proxy(request))
+
+        result.print_progress()
+        return result
+
+    def clone(self) -&gt; &#34;Context&#34;:
+        &#34;&#34;&#34;Clones the current prompt.&#34;&#34;&#34;
+        # We can&#39;t use deepcopy here because we need to make sure the clone is correctly synced to
+        # the UI thread.
+        clone = Context(
+            # We only clone the tokens, not the child contexts.
+            body=list(self.tokens),
+            parent=self,
+            next_rng_seed=self.next_rng_seed,
+        )
+        self.body.append(clone)
+        return clone
+
+    async def set_title(self, title: str):
+        &#34;&#34;&#34;Sets the title of the context, which is shown in the UI.&#34;&#34;&#34;
+        request = {
+            &#34;contextId&#34;: self.context_id,
+            &#34;title&#34;: title,
+        }
+        await js.setContextTitle(pyodide.ffi.create_proxy(request))
+
+    def __enter__(self):
+        &#34;&#34;&#34;Uses this context as the current context.&#34;&#34;&#34;
+        if self._reset_token is not None:
+            raise RuntimeError(&#34;Cannot enter a context twice.&#34;)
+        self._reset_token = _current_ctx.set(self)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        &#34;&#34;&#34;Exits the context and resets the global state.&#34;&#34;&#34;
+        _current_ctx.reset(self._reset_token)
+        self._reset_token = None
+
+
+def get_context() -&gt; Context:
+    &#34;&#34;&#34;Returns the current context.&#34;&#34;&#34;
+    if _force_ctx.get() is not None:
+        return _force_ctx.get()
+    return _current_ctx.get()
+
+
+@contextlib.contextmanager
+def force_context(ctx: Context):
+    &#34;&#34;&#34;Overrides the current context with the provided one.&#34;&#34;&#34;
+    token = _force_ctx.set(ctx)
+    try:
+        yield
+    finally:
+        _force_ctx.reset(token)
+
+
+# The following functions operate on the current context.
+
+
+def as_string() -&gt; str:
+    &#34;&#34;&#34;See `Context.as_string`.&#34;&#34;&#34;
+    return get_context().as_string()
+
+
+def select_model(model_name: str):
+    &#34;&#34;&#34;See `Context.select_model`.&#34;&#34;&#34;
+    return get_context().select_model(model_name)
+
+
+def as_token_ids() -&gt; list[int]:
+    &#34;&#34;&#34;See `Context.as_token_ids`.&#34;&#34;&#34;
+    return get_context().as_token_ids()
+
+
+async def prompt(text: str, strip: bool = False) -&gt; Sequence[Token]:
+    &#34;&#34;&#34;See `Context.prompt`.&#34;&#34;&#34;
+    return await get_context().prompt(text, strip)
+
+
+def randomize_rng_seed() -&gt; int:
+    &#34;&#34;&#34;See `Context.randomize_rng_seed`.&#34;&#34;&#34;
+    return get_context().randomize_rng_seed()
+
+
+def create_context() -&gt; &#34;Context&#34;:
+    &#34;&#34;&#34;See `Context.create_context()`.&#34;&#34;&#34;
+    return get_context().create_context()
+
+
+async def set_title(title: str):
+    &#34;&#34;&#34;See `Context.set_title`.&#34;&#34;&#34;
+    await get_context().set_title(title)
+
+
+async def sample(
+    max_len: int = 256,
+    temperature: float = 1.0,
+    nucleus_p: float = 0.7,
+    stop_tokens: Optional[list[str]] = None,
+    stop_strings: Optional[list[str]] = None,
+    rng_seed: Optional[int] = None,
+    add_to_context: bool = True,
+    return_attention: bool = False,
+    allowed_tokens: Optional[Sequence[Union[int, str]]] = None,
+    disallowed_tokens: Optional[Sequence[Union[int, str]]] = None,
+):
+    &#34;&#34;&#34;See `Context.sample`.&#34;&#34;&#34;
+    return await get_context().sample(
+        max_len,
+        temperature,
+        nucleus_p,
+        stop_tokens,
+        stop_strings,
+        rng_seed,
+        add_to_context,
+        return_attention,
+        allowed_tokens,
+        disallowed_tokens,
+    )
+
+
+def clone() -&gt; &#34;Context&#34;:
+    &#34;&#34;&#34;See `Context.clone`.&#34;&#34;&#34;
+    return get_context().clone()
+
+
+def prompt_fn(fn):
+    &#34;&#34;&#34;A context manager that executes `fn` in a fresh prompt context.
+
+    If a function is annotated with this context manager, a fresh prompt context is created that
+    the function operates on. This allows solving sub-problems with different prompt and
+    incorporating the solution to a sub problems into the original one.
+
+    Example:
+        ```
+        @prompt_fn
+        async def add(a, b):
+            prompt(f&#34;{a}+{b}=&#34;)
+            result = await sample(max_len=10, stop_strings=[&#34; &#34;])
+            return result.as_string().split(&#34; &#34;)[0]
+        ```
+
+    In order to get access to the context used by an annotated function, the function must return
+    it like this:
+
+    ```
+        @prompt_fn
+        def foo():
+            return get_context()
+    ```
+
+    You can override the context an annotated function uses. This is useful if you want to continue
+    operating on a context that was created by a function.
+
+    ```
+        @prompt_fn
+        async def bar():
+            async prompt(&#34;1+1=&#34;)
+            return get_context()
+
+        @prompt_fn
+        async def foo():
+            await sample(max_len=24)
+
+        ctx = await bar()
+        with force_context(ctx):
+            foo()
+    ```
+
+    Args:
+        fn: An asynchronous function to execute in a newly created context.
+
+    Returns:
+        The wrapped function.
+    &#34;&#34;&#34;
+
+    async def _fn(*args, **kwargs):
+        with get_context().create_context() as ctx:
+            await ctx.set_title(fn.__name__)
+            return await fn(*args, **kwargs)
+
+    return _fn
+
+
+async def read_file(file_name: str) -&gt; bytes:
+    &#34;&#34;&#34;Reads a file that the user has uploaded to the file manager.
+
+    Args:
+        file_name: Name of the file to read.
+
+    Returns:
+        The file&#39;s content as raw bytes array.
+    &#34;&#34;&#34;
+    result = await js.readFile(pyodide.ffi.create_proxy(file_name))
+    return result.to_py().tobytes()</code></pre>
+      </details>
+    </section>
+    <section></section>
+    <section></section>
+    <section>
+      <h2 class="section-title" id="header-functions">Functions</h2>
+      <dl>
+        <dt id="prompt_ide.as_string"><code class="name flex">
+          <span>def <span class="ident">as_string</span></span>(<span>) ‑> str</span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>See <code><a href="#prompt_ide.Context.as_string"
+                                            title="prompt_ide.Context.as_string">Context.as_string()</a></code>.
+          </p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">def as_string() -&gt; str:
+    &#34;&#34;&#34;See `Context.as_string`.&#34;&#34;&#34;
+    return get_context().as_string()</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.as_token_ids"><code class="name flex">
+          <span>def <span class="ident">as_token_ids</span></span>(<span>) ‑> list[int]</span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>See <code><a href="#prompt_ide.Context.as_token_ids"
+                                            title="prompt_ide.Context.as_token_ids">Context.as_token_ids()</a></code>.
+          </p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">def as_token_ids() -&gt; list[int]:
+    &#34;&#34;&#34;See `Context.as_token_ids`.&#34;&#34;&#34;
+    return get_context().as_token_ids()</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.clone"><code class="name flex">
+          <span>def <span class="ident">clone</span></span>(<span>) ‑> <a href="#prompt_ide.Context"
+                                                                          title="prompt_ide.Context">Context</a></span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>See <code><a href="#prompt_ide.Context.clone"
+                                            title="prompt_ide.Context.clone">Context.clone()</a></code>.
+          </p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">def clone() -&gt; &#34;Context&#34;:
+    &#34;&#34;&#34;See `Context.clone`.&#34;&#34;&#34;
+    return get_context().clone()</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.create_context"><code class="name flex">
+          <span>def <span class="ident">create_context</span></span>(<span>) ‑> <a
+          href="#prompt_ide.Context" title="prompt_ide.Context">Context</a></span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>See <code><a href="#prompt_ide.Context.create_context"
+                                            title="prompt_ide.Context.create_context">Context.create_context()</a></code>.
+          </p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">def create_context() -&gt; &#34;Context&#34;:
+    &#34;&#34;&#34;See `Context.create_context()`.&#34;&#34;&#34;
+    return get_context().create_context()</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.force_context"><code class="name flex">
+          <span>def <span class="ident">force_context</span></span>(<span>ctx: <a
+          href="#prompt_ide.Context" title="prompt_ide.Context">Context</a>)</span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>Overrides the current context with the provided one.</p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">@contextlib.contextmanager
+def force_context(ctx: Context):
+    &#34;&#34;&#34;Overrides the current context with the provided one.&#34;&#34;&#34;
+    token = _force_ctx.set(ctx)
+    try:
+        yield
+    finally:
+        _force_ctx.reset(token)</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.get_context"><code class="name flex">
+          <span>def <span class="ident">get_context</span></span>(<span>) ‑> <a
+          href="#prompt_ide.Context" title="prompt_ide.Context">Context</a></span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>Returns the current context.</p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">def get_context() -&gt; Context:
+    &#34;&#34;&#34;Returns the current context.&#34;&#34;&#34;
+    if _force_ctx.get() is not None:
+        return _force_ctx.get()
+    return _current_ctx.get()</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.prompt"><code class="name flex">
+          <span>async def <span class="ident">prompt</span></span>(<span>text: str, strip: bool = False) ‑> Sequence[<a
+          href="#prompt_ide.Token" title="prompt_ide.Token">Token</a>]</span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>See <code><a href="#prompt_ide.Context.prompt"
+                                            title="prompt_ide.Context.prompt">Context.prompt()</a></code>.
+          </p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">async def prompt(text: str, strip: bool = False) -&gt; Sequence[Token]:
+    &#34;&#34;&#34;See `Context.prompt`.&#34;&#34;&#34;
+    return await get_context().prompt(text, strip)</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.prompt_fn"><code class="name flex">
+          <span>def <span class="ident">prompt_fn</span></span>(<span>fn)</span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>A context manager that executes
+            <code>fn</code> in a fresh prompt context.</p>
+            <p>If a function is annotated with this context manager, a fresh prompt context is created that
+               the function operates on. This allows solving sub-problems with different prompt and
+               incorporating the solution to a sub problems into the original one.</p>
+            <h2 id="example">Example</h2>
+            <pre><code>@prompt_fn
+async def add(a, b):
+    prompt(f&quot;{a}+{b}=&quot;)
+    result = await sample(max_len=10, stop_strings=[&quot; &quot;])
+    return result.as_string().split(&quot; &quot;)[0]
+</code></pre>
+            <p>In order to get access to the context used by an annotated function, the function must return
+               it like this:</p>
+            <pre><code>    @prompt_fn
+    def foo():
+        return get_context()
+</code></pre>
+            <p>You can override the context an annotated function uses. This is useful if you want to continue
+               operating on a context that was created by a function.</p>
+            <pre><code>    @prompt_fn
+    async def bar():
+        async prompt(&quot;1+1=&quot;)
+        return get_context()
+
+    @prompt_fn
+    async def foo():
+        await sample(max_len=24)
+
+    ctx = await bar()
+    with force_context(ctx):
+        foo()
+</code></pre>
+            <h2 id="args">Args</h2>
+            <dl>
+              <dt><strong><code>fn</code></strong></dt>
+              <dd>An asynchronous function to execute in a newly created context.</dd>
+            </dl>
+            <h2 id="returns">Returns</h2>
+            <p>The wrapped function.</p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">def prompt_fn(fn):
+    &#34;&#34;&#34;A context manager that executes `fn` in a fresh prompt context.
+
+    If a function is annotated with this context manager, a fresh prompt context is created that
+    the function operates on. This allows solving sub-problems with different prompt and
+    incorporating the solution to a sub problems into the original one.
+
+    Example:
+        ```
+        @prompt_fn
+        async def add(a, b):
+            prompt(f&#34;{a}+{b}=&#34;)
+            result = await sample(max_len=10, stop_strings=[&#34; &#34;])
+            return result.as_string().split(&#34; &#34;)[0]
+        ```
+
+    In order to get access to the context used by an annotated function, the function must return
+    it like this:
+
+    ```
+        @prompt_fn
+        def foo():
+            return get_context()
+    ```
+
+    You can override the context an annotated function uses. This is useful if you want to continue
+    operating on a context that was created by a function.
+
+    ```
+        @prompt_fn
+        async def bar():
+            async prompt(&#34;1+1=&#34;)
+            return get_context()
+
+        @prompt_fn
+        async def foo():
+            await sample(max_len=24)
+
+        ctx = await bar()
+        with force_context(ctx):
+            foo()
+    ```
+
+    Args:
+        fn: An asynchronous function to execute in a newly created context.
+
+    Returns:
+        The wrapped function.
+    &#34;&#34;&#34;
+
+    async def _fn(*args, **kwargs):
+        with get_context().create_context() as ctx:
+            await ctx.set_title(fn.__name__)
+            return await fn(*args, **kwargs)
+
+    return _fn</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.randomize_rng_seed"><code class="name flex">
+          <span>def <span class="ident">randomize_rng_seed</span></span>(<span>) ‑> int</span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>See <code><a href="#prompt_ide.Context.randomize_rng_seed"
+                                            title="prompt_ide.Context.randomize_rng_seed">Context.randomize_rng_seed()</a></code>.
+          </p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">def randomize_rng_seed() -&gt; int:
+    &#34;&#34;&#34;See `Context.randomize_rng_seed`.&#34;&#34;&#34;
+    return get_context().randomize_rng_seed()</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.read_file"><code class="name flex">
+          <span>async def <span
+            class="ident">read_file</span></span>(<span>file_name: str) ‑> bytes</span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>Reads a file that the user has uploaded to the file manager.</p>
+            <h2 id="args">Args</h2>
+            <dl>
+              <dt><strong><code>file_name</code></strong></dt>
+              <dd>Name of the file to read.</dd>
+            </dl>
+            <h2 id="returns">Returns</h2>
+            <p>The file's content as raw bytes array.</p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">async def read_file(file_name: str) -&gt; bytes:
+    &#34;&#34;&#34;Reads a file that the user has uploaded to the file manager.
+
+    Args:
+        file_name: Name of the file to read.
+
+    Returns:
+        The file&#39;s content as raw bytes array.
+    &#34;&#34;&#34;
+    result = await js.readFile(pyodide.ffi.create_proxy(file_name))
+    return result.to_py().tobytes()</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.sample"><code class="name flex">
+          <span>async def <span
+            class="ident">sample</span></span>(<span>max_len: int = 256, temperature: float = 1.0, nucleus_p: float = 0.7, stop_tokens: Optional[list[str]] = None, stop_strings: Optional[list[str]] = None, rng_seed: Optional[int] = None, add_to_context: bool = True, return_attention: bool = False, allowed_tokens: Optional[Sequence[Union[int, str]]] = None, disallowed_tokens: Optional[Sequence[Union[int, str]]] = None)</span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>See <code><a href="#prompt_ide.Context.sample"
+                                            title="prompt_ide.Context.sample">Context.sample()</a></code>.
+          </p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">async def sample(
+    max_len: int = 256,
+    temperature: float = 1.0,
+    nucleus_p: float = 0.7,
+    stop_tokens: Optional[list[str]] = None,
+    stop_strings: Optional[list[str]] = None,
+    rng_seed: Optional[int] = None,
+    add_to_context: bool = True,
+    return_attention: bool = False,
+    allowed_tokens: Optional[Sequence[Union[int, str]]] = None,
+    disallowed_tokens: Optional[Sequence[Union[int, str]]] = None,
+):
+    &#34;&#34;&#34;See `Context.sample`.&#34;&#34;&#34;
+    return await get_context().sample(
+        max_len,
+        temperature,
+        nucleus_p,
+        stop_tokens,
+        stop_strings,
+        rng_seed,
+        add_to_context,
+        return_attention,
+        allowed_tokens,
+        disallowed_tokens,
+    )</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.select_model"><code class="name flex">
+          <span>def <span class="ident">select_model</span></span>(<span>model_name: str)</span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>See <code><a href="#prompt_ide.Context.select_model"
+                                            title="prompt_ide.Context.select_model">Context.select_model()</a></code>.
+          </p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">def select_model(model_name: str):
+    &#34;&#34;&#34;See `Context.select_model`.&#34;&#34;&#34;
+    return get_context().select_model(model_name)</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.set_title"><code class="name flex">
+          <span>async def <span class="ident">set_title</span></span>(<span>title: str)</span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>See <code><a href="#prompt_ide.Context.set_title"
+                                            title="prompt_ide.Context.set_title">Context.set_title()</a></code>.
+          </p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">async def set_title(title: str):
+    &#34;&#34;&#34;See `Context.set_title`.&#34;&#34;&#34;
+    await get_context().set_title(title)</code></pre>
+          </details>
+        </dd>
+        <dt id="prompt_ide.user_input"><code class="name flex">
+          <span>async def <span
+            class="ident">user_input</span></span>(<span>text: str) ‑> str | None</span>
+        </code></dt>
+        <dd>
+          <div class="desc">
+            <p>Asks the user to enter something into the text field shown in the completion dialog.</p>
+            <h2 id="args">Args</h2>
+            <dl>
+              <dt><strong><code>text</code></strong></dt>
+              <dd>The placeholder text displayed in the text field before the user enters a response.</dd>
+            </dl>
+            <h2 id="returns">Returns</h2>
+            <p>A string if the user actually entered some text and
+              <code>None</code> if the user pressed <code>cancel</code>.</p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">async def user_input(text: str) -&gt; str | None:
+    &#34;&#34;&#34;Asks the user to enter something into the text field shown in the completion dialog.
+
+    Args:
+        text: The placeholder text displayed in the text field before the user enters a response.
+
+    Returns:
+        A string if the user actually entered some text and `None` if the user pressed `cancel`.
+    &#34;&#34;&#34;
+    args = pyodide.ffi.create_proxy(str(text))
+    response = await js.userInput(args)
+    response = response.to_py()
+
+    if &#34;cancelled&#34; in response:
+        return None
+    return response[&#34;text&#34;]</code></pre>
+          </details>
+        </dd>
+      </dl>
+    </section>
+    <section>
+      <h2 class="section-title" id="header-classes">Classes</h2>
+      <dl>
+        <dt id="prompt_ide.Context"><code class="flex name class">
+          <span>class <span class="ident">Context</span></span>
+          <span>(</span><span>context_id: str = &lt;factory&gt;, body: list[typing.Union[<a
+          href="#prompt_ide.Token" title="prompt_ide.Token">Token</a>, ForwardRef('<a
+          href="#prompt_ide.Context" title="prompt_ide.Context">Context</a>')]] = &lt;factory&gt;, parent: Optional[ForwardRef('<a
+          href="#prompt_ide.Context" title="prompt_ide.Context">Context</a>')] = None, next_rng_seed: int = 0, model_name: str = '')</span>
+        </code></dt>
+        <dd>
+          <div class="desc">
+            <p>A context is a sequence of tokens that are used as prompt when sampling from the model.</p>
+          </div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">@dataclasses.dataclass
+class Context:
+    &#34;&#34;&#34;A context is a sequence of tokens that are used as prompt when sampling from the model.&#34;&#34;&#34;
+
+    # The context ID.
+    context_id: str = dataclasses.field(default_factory=lambda: str(uuid.uuid4()))
+    # The body of this context is a sequence of tokens and child-contexts. The reasons we use a
+    # joint body field instead of separate fields is that we want to render the child contexts
+    # relative to the tokens of the parent context.
+    body: list[Union[Token, &#34;Context&#34;]] = dataclasses.field(default_factory=list)
+    # The parent context if this is not the root context.
+    parent: Optional[&#34;Context&#34;] = None
+    # The seed used for the next call to `sample`.
+    next_rng_seed: int = 0
+    # Name of the model to use. The model name is tied to the context because different models can
+    # use different tokenizers.
+    model_name: str = &#34;&#34;
+
+    # If this context has been manually entered, the reset token to reset the global context
+    # variable.
+    _reset_token: Any = None
+
+    def __post_init__(self):
+        &#34;&#34;&#34;Sends this context to the UI thread to be displayed in the rendering dialogue.&#34;&#34;&#34;
+        if self.parent is not None:
+            self.parent.body.append(self)
+
+        request = {
+            &#34;contextId&#34;: self.context_id,
+            &#34;parent&#34;: self.parent.context_id if self.parent else &#34;&#34;,
+        }
+        asyncio.get_event_loop().run_until_complete(
+            js.createContext(pyodide.ffi.create_proxy(request))
+        )
+
+    def select_model(self, model_name: str):
+        &#34;&#34;&#34;Selects the model name for this context.
+
+        The model name can only be set before any tokens have been added to this context.
+
+        Args:
+            model_name: Name of the model to use.
+        &#34;&#34;&#34;
+        if self.tokens:
+            raise RuntimeError(
+                &#34;Cannot change the model name of a non-empty context. A context &#34;
+                &#34;stores token sequences and different models may use different &#34;
+                &#34;tokenizers. Hence, using tokens across models leads to undefined &#34;
+                &#34;behavior. If you want to use multiple models in the same prompt, &#34;
+                &#34;consider using a @prompt_fn.&#34;
+            )
+        self.model_name = model_name
+
+    async def _tokenize(self, text: str) -&gt; list[dict]:
+        &#34;&#34;&#34;Same as `tokenize` but returns the raw proto dicts.&#34;&#34;&#34;
+        # Nothing to do if the text is empty.
+        if not text:
+            return []
+        print(f&#34;Tokenizing prompt with {len(text)} characters.&#34;)
+        result = await js.tokenize(
+            pyodide.ffi.create_proxy(
+                {
+                    &#34;text&#34;: text,
+                    &#34;modelName&#34;: self.model_name,
+                }
+            )
+        )
+        result = result.to_py()
+        compression = (1 - len(result) / len(text)) * 100
+        print(
+            f&#34;Tokenization done. {len(result)} tokens detected (Compression of {compression:.1f}%).&#34;
+        )
+
+        return result
+
+    async def tokenize(self, text: str) -&gt; list[Token]:
+        &#34;&#34;&#34;Tokenizes the given text and returns a list of individual tokens.
+
+        Args:
+            text: Text to tokenize.
+
+        Returns:
+            List of tokens. The log probability on the logit is initialized to 0.
+        &#34;&#34;&#34;
+        result = await self._tokenize(text)
+        return [Token.from_proto_dict(d) for d in result]
+
+    @property
+    def tokens(self) -&gt; Sequence[Token]:
+        &#34;&#34;&#34;Returns the tokens stored in this context.&#34;&#34;&#34;
+        return [t for t in self.body if isinstance(t, Token)]
+
+    @property
+    def children(self) -&gt; Sequence[&#34;Context&#34;]:
+        &#34;&#34;&#34;Returns all child contexts.&#34;&#34;&#34;
+        return [c for c in self.body if isinstance(c, Context)]
+
+    def as_string(self) -&gt; str:
+        &#34;&#34;&#34;Returns a string representation of this context.&#34;&#34;&#34;
+        return &#34;&#34;.join(t.token_str for t in self.tokens)
+
+    def as_token_ids(self) -&gt; list[int]:
+        &#34;&#34;&#34;Returns a list of token IDs stored in this context.&#34;&#34;&#34;
+        return [t.token_id for t in self.tokens]
+
+    async def prompt(self, text: str, strip: bool = False) -&gt; Sequence[Token]:
+        &#34;&#34;&#34;Tokenizes the argument and adds the tokens to the context.
+
+        Args:
+            text: String to tokenize and add to the context.
+            strip: If true, any whitespace surrounding `prompt` will be stripped.
+
+        Returns:
+            Tokenized string.
+        &#34;&#34;&#34;
+        if strip:
+            text = text.strip()
+        token_protos = await self._tokenize(text)
+
+        request = {
+            &#34;contextId&#34;: self.context_id,
+            &#34;tokens&#34;: token_protos,
+        }
+        await js.pushTokens(pyodide.ffi.create_proxy(request))
+
+        tokens = [Token.from_proto_dict(t) for t in token_protos]
+        self.body.extend(tokens)
+        return tokens
+
+    def randomize_rng_seed(self) -&gt; int:
+        &#34;&#34;&#34;Samples a new RNG seed and returns it.&#34;&#34;&#34;
+        self.next_rng_seed = random.randint(0, 100000)
+        return self.next_rng_seed
+
+    def create_context(self) -&gt; &#34;Context&#34;:
+        &#34;&#34;&#34;Creates a new context and adds it as child context.&#34;&#34;&#34;
+        child = Context(
+            parent=self, next_rng_seed=self._get_next_rng_seed(), model_name=self.model_name
+        )
+        return child
+
+    def _get_next_rng_seed(self) -&gt; int:
+        &#34;&#34;&#34;Returns the next RNG seed.&#34;&#34;&#34;
+        self.next_rng_seed += 1
+        return self.next_rng_seed - 1
+
+    async def sample(
+        self,
+        max_len: int = 256,
+        temperature: float = 1.0,
+        nucleus_p: float = 0.7,
+        stop_tokens: Optional[list[str]] = None,
+        stop_strings: Optional[list[str]] = None,
+        rng_seed: Optional[int] = None,
+        add_to_context: bool = True,
+        return_attention: bool = False,
+        allowed_tokens: Optional[Sequence[Union[int, str]]] = None,
+        disallowed_tokens: Optional[Sequence[Union[int, str]]] = None,
+        augment_tokens: bool = True,
+    ) -&gt; SampleResult:
+        &#34;&#34;&#34;Generates a model response based on the current prompt.
+
+        The current prompt consists of all text that has been added to the prompt either since the
+        beginning of the program or since the last call to `clear_prompt`.
+
+        Args:
+            max_len: Maximum number of tokens to generate.
+            temperature: Temperature of the final softmax operation. The lower the temperature, the
+                lower the variance of the token distribution. In the limit, the distribution collapses
+                onto the single token with the highest probability.
+            nucleus_p: Threshold of the Top-P sampling technique: We rank all tokens by their
+                probability and then only actually sample from the set of tokens that ranks in the
+                Top-P percentile of the distribution.
+            stop_tokens: A list of strings, each of which will be mapped independently to a single
+                token. If a string does not map cleanly to one token, it will be silently ignored.
+                If the network samples one of these tokens, sampling is stopped and the stop token
+                *is not* included in the response.
+            stop_strings: A list of strings. If any of these strings occurs in the network output,
+                sampling is stopped but the string that triggered the stop *will be* included in the
+                response. Note that the response may be longer than the stop string. For example, if
+                the stop string is &#34;Hel&#34; and the network predicts the single-token response &#34;Hello&#34;,
+                sampling will be stopped but the response will still read &#34;Hello&#34;.
+            rng_seed: See of the random number generator used to sample from the model outputs.
+            add_to_context: If true, the generated tokens will be added to the context.
+            return_attention: If true, returns the attention mask. Note that this can significantly
+                increase the response size for long sequences.
+            allowed_tokens: If set, only these tokens can be sampled. Invalid input tokens are
+                ignored. Only one of `allowed_tokens` and `disallowed_tokens` must be set.
+            disallowed_tokens: If set, these tokens cannot be sampled. Invalid input tokens are
+                ignored. Only one of `allowed_tokens` and `disallowed_tokens` must be set.
+            augment_tokens: If true, strings passed to `stop_tokens`, `allowed_tokens` and
+                `disallowed_tokens` will be augmented to include both the passed token and the
+                version with leading whitespace. This is useful because most words have two
+                corresponding vocabulary entries: one with leading whitespace and one without.
+
+        Returns:
+            The generated text.
+        &#34;&#34;&#34;
+        if max_len is None and not stop_tokens:
+            raise ValueError(&#34;Must provide either max_len or stop_tokens when calling `generate`.&#34;)
+
+        if rng_seed is None:
+            rng_seed = self._get_next_rng_seed()
+
+        if max_len is not None:
+            print(
+                f&#34;Generating {max_len} tokens [seed={rng_seed}, temperature={temperature}, &#34;
+                f&#34;nucleus_p={nucleus_p}, stop_tokens={stop_tokens}, stop_strings={stop_strings}].&#34;
+            )
+
+        if augment_tokens:
+            if stop_tokens:
+                stop_tokens = stop_tokens + [f&#34;▁{t}&#34; for t in stop_tokens]
+            if allowed_tokens:
+                allowed_tokens = list(allowed_tokens) + [
+                    f&#34;▁{t}&#34; for t in allowed_tokens if isinstance(t, str) and not t.startswith(&#34;▁&#34;)
+                ]
+            if disallowed_tokens:
+                disallowed_tokens = list(disallowed_tokens) + [
+                    f&#34;▁{t}&#34;
+                    for t in disallowed_tokens
+                    if isinstance(t, str) and not t.startswith(&#34;▁&#34;)
+                ]
+
+        request = {
+            &#34;prompt&#34;: self.as_token_ids(),
+            &#34;settings&#34;: {
+                &#34;maxLen&#34;: max_len or 0,
+                &#34;temperature&#34;: temperature,
+                &#34;nucleusP&#34;: nucleus_p,
+                &#34;stopTokens&#34;: stop_tokens or [],
+                &#34;stopStrings&#34;: stop_strings or [],
+                &#34;rngSeed&#34;: rng_seed,
+                &#34;allowedTokens&#34;: [_parse_input_token(t) for t in allowed_tokens or []],
+                &#34;disallowedTokens&#34;: [_parse_input_token(t) for t in disallowed_tokens or []],
+            },
+            &#34;returnAttention&#34;: return_attention,
+            &#34;modelName&#34;: self.model_name,
+        }
+
+        args = pyodide.ffi.create_proxy(request)
+        iterator = js.generate(args)
+
+        result = SampleResult(request)
+
+        while True:
+            obj = await iterator.next()
+            if obj.done:
+                break
+
+            token_proto = obj.value.to_py()
+            result.append(Token.from_proto_dict(token_proto))
+
+            if add_to_context:
+                self.body.append(result.tokens[-1])
+
+            # Sync the token to the UI thread.
+            request = {
+                &#34;contextId&#34;: self.context_id,
+                &#34;tokens&#34;: [token_proto],
+            }
+            await js.pushTokens(pyodide.ffi.create_proxy(request))
+
+        result.print_progress()
+        return result
+
+    def clone(self) -&gt; &#34;Context&#34;:
+        &#34;&#34;&#34;Clones the current prompt.&#34;&#34;&#34;
+        # We can&#39;t use deepcopy here because we need to make sure the clone is correctly synced to
+        # the UI thread.
+        clone = Context(
+            # We only clone the tokens, not the child contexts.
+            body=list(self.tokens),
+            parent=self,
+            next_rng_seed=self.next_rng_seed,
+        )
+        self.body.append(clone)
+        return clone
+
+    async def set_title(self, title: str):
+        &#34;&#34;&#34;Sets the title of the context, which is shown in the UI.&#34;&#34;&#34;
+        request = {
+            &#34;contextId&#34;: self.context_id,
+            &#34;title&#34;: title,
+        }
+        await js.setContextTitle(pyodide.ffi.create_proxy(request))
+
+    def __enter__(self):
+        &#34;&#34;&#34;Uses this context as the current context.&#34;&#34;&#34;
+        if self._reset_token is not None:
+            raise RuntimeError(&#34;Cannot enter a context twice.&#34;)
+        self._reset_token = _current_ctx.set(self)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        &#34;&#34;&#34;Exits the context and resets the global state.&#34;&#34;&#34;
+        _current_ctx.reset(self._reset_token)
+        self._reset_token = None</code></pre>
+          </details>
+          <h3>Class variables</h3>
+          <dl>
+            <dt id="prompt_ide.Context.body"><code class="name">var <span
+              class="ident">body</span> : list[typing.Union[<a href="#prompt_ide.Token"
+                                                               title="prompt_ide.Token">Token</a>, <a
+              href="#prompt_ide.Context" title="prompt_ide.Context">Context</a>]]</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.Context.context_id"><code class="name">var <span
+              class="ident">context_id</span> : str</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.Context.model_name"><code class="name">var <span
+              class="ident">model_name</span> : str</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.Context.next_rng_seed"><code class="name">var <span
+              class="ident">next_rng_seed</span> : int</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.Context.parent"><code class="name">var <span
+              class="ident">parent</span> : Optional[<a href="#prompt_ide.Context"
+                                                        title="prompt_ide.Context">Context</a>]</code>
+            </dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+          </dl>
+          <h3>Instance variables</h3>
+          <dl>
+            <dt id="prompt_ide.Context.children"><code class="name">var <span
+              class="ident">children</span> : Sequence[<a href="#prompt_ide.Context"
+                                                          title="prompt_ide.Context">Context</a>]</code>
+            </dt>
+            <dd>
+              <div class="desc"><p>Returns all child contexts.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">@property
+def children(self) -&gt; Sequence[&#34;Context&#34;]:
+    &#34;&#34;&#34;Returns all child contexts.&#34;&#34;&#34;
+    return [c for c in self.body if isinstance(c, Context)]</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.Context.tokens"><code class="name">var <span
+              class="ident">tokens</span> : Sequence[<a href="#prompt_ide.Token"
+                                                        title="prompt_ide.Token">Token</a>]</code>
+            </dt>
+            <dd>
+              <div class="desc"><p>Returns the tokens stored in this context.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">@property
+def tokens(self) -&gt; Sequence[Token]:
+    &#34;&#34;&#34;Returns the tokens stored in this context.&#34;&#34;&#34;
+    return [t for t in self.body if isinstance(t, Token)]</code></pre>
+              </details>
+            </dd>
+          </dl>
+          <h3>Methods</h3>
+          <dl>
+            <dt id="prompt_ide.Context.as_string"><code class="name flex">
+              <span>def <span class="ident">as_string</span></span>(<span>self) ‑> str</span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Returns a string representation of this context.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">def as_string(self) -&gt; str:
+    &#34;&#34;&#34;Returns a string representation of this context.&#34;&#34;&#34;
+    return &#34;&#34;.join(t.token_str for t in self.tokens)</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.Context.as_token_ids"><code class="name flex">
+              <span>def <span
+                class="ident">as_token_ids</span></span>(<span>self) ‑> list[int]</span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Returns a list of token IDs stored in this context.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">def as_token_ids(self) -&gt; list[int]:
+    &#34;&#34;&#34;Returns a list of token IDs stored in this context.&#34;&#34;&#34;
+    return [t.token_id for t in self.tokens]</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.Context.clone"><code class="name flex">
+              <span>def <span class="ident">clone</span></span>(<span>self) ‑> <a
+              href="#prompt_ide.Context" title="prompt_ide.Context">Context</a></span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Clones the current prompt.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">def clone(self) -&gt; &#34;Context&#34;:
+    &#34;&#34;&#34;Clones the current prompt.&#34;&#34;&#34;
+    # We can&#39;t use deepcopy here because we need to make sure the clone is correctly synced to
+    # the UI thread.
+    clone = Context(
+        # We only clone the tokens, not the child contexts.
+        body=list(self.tokens),
+        parent=self,
+        next_rng_seed=self.next_rng_seed,
+    )
+    self.body.append(clone)
+    return clone</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.Context.create_context"><code class="name flex">
+              <span>def <span class="ident">create_context</span></span>(<span>self) ‑> <a
+              href="#prompt_ide.Context" title="prompt_ide.Context">Context</a></span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Creates a new context and adds it as child context.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">def create_context(self) -&gt; &#34;Context&#34;:
+    &#34;&#34;&#34;Creates a new context and adds it as child context.&#34;&#34;&#34;
+    child = Context(
+        parent=self, next_rng_seed=self._get_next_rng_seed(), model_name=self.model_name
+    )
+    return child</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.Context.prompt"><code class="name flex">
+              <span>async def <span class="ident">prompt</span></span>(<span>self, text: str, strip: bool = False) ‑> Sequence[<a
+              href="#prompt_ide.Token" title="prompt_ide.Token">Token</a>]</span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Tokenizes the argument and adds the tokens to the context.</p>
+                <h2 id="args">Args</h2>
+                <dl>
+                  <dt><strong><code>text</code></strong></dt>
+                  <dd>String to tokenize and add to the context.</dd>
+                  <dt><strong><code>strip</code></strong></dt>
+                  <dd>If true, any whitespace surrounding <code><a href="#prompt_ide.prompt"
+                                                                   title="prompt_ide.prompt">prompt()</a></code> will be stripped.
+                  </dd>
+                </dl>
+                <h2 id="returns">Returns</h2>
+                <p>Tokenized string.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">async def prompt(self, text: str, strip: bool = False) -&gt; Sequence[Token]:
+    &#34;&#34;&#34;Tokenizes the argument and adds the tokens to the context.
+
+    Args:
+        text: String to tokenize and add to the context.
+        strip: If true, any whitespace surrounding `prompt` will be stripped.
+
+    Returns:
+        Tokenized string.
+    &#34;&#34;&#34;
+    if strip:
+        text = text.strip()
+    token_protos = await self._tokenize(text)
+
+    request = {
+        &#34;contextId&#34;: self.context_id,
+        &#34;tokens&#34;: token_protos,
+    }
+    await js.pushTokens(pyodide.ffi.create_proxy(request))
+
+    tokens = [Token.from_proto_dict(t) for t in token_protos]
+    self.body.extend(tokens)
+    return tokens</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.Context.randomize_rng_seed"><code class="name flex">
+              <span>def <span
+                class="ident">randomize_rng_seed</span></span>(<span>self) ‑> int</span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Samples a new RNG seed and returns it.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">def randomize_rng_seed(self) -&gt; int:
+    &#34;&#34;&#34;Samples a new RNG seed and returns it.&#34;&#34;&#34;
+    self.next_rng_seed = random.randint(0, 100000)
+    return self.next_rng_seed</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.Context.sample"><code class="name flex">
+              <span>async def <span class="ident">sample</span></span>(<span>self, max_len: int = 256, temperature: float = 1.0, nucleus_p: float = 0.7, stop_tokens: Optional[list[str]] = None, stop_strings: Optional[list[str]] = None, rng_seed: Optional[int] = None, add_to_context: bool = True, return_attention: bool = False, allowed_tokens: Optional[Sequence[Union[int, str]]] = None, disallowed_tokens: Optional[Sequence[Union[int, str]]] = None, augment_tokens: bool = True) ‑> <a
+              href="#prompt_ide.SampleResult"
+              title="prompt_ide.SampleResult">SampleResult</a></span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Generates a model response based on the current prompt.</p>
+                <p>The current prompt consists of all text that has been added to the prompt either since the
+                   beginning of the program or since the last call to <code>clear_prompt</code>.</p>
+                <h2 id="args">Args</h2>
+                <dl>
+                  <dt><strong><code>max_len</code></strong></dt>
+                  <dd>Maximum number of tokens to generate.</dd>
+                  <dt><strong><code>temperature</code></strong></dt>
+                  <dd>Temperature of the final softmax operation. The lower the temperature, the
+                      lower the variance of the token distribution. In the limit, the distribution collapses
+                      onto the single token with the highest probability.
+                  </dd>
+                  <dt><strong><code>nucleus_p</code></strong></dt>
+                  <dd>Threshold of the Top-P sampling technique: We rank all tokens by their
+                      probability and then only actually sample from the set of tokens that ranks in the
+                      Top-P percentile of the distribution.
+                  </dd>
+                  <dt><strong><code>stop_tokens</code></strong></dt>
+                  <dd>A list of strings, each of which will be mapped independently to a single
+                      token. If a string does not map cleanly to one token, it will be silently ignored.
+                      If the network samples one of these tokens, sampling is stopped and the stop token
+                    <em>is not</em> included in the response.
+                  </dd>
+                  <dt><strong><code>stop_strings</code></strong></dt>
+                  <dd>A list of strings. If any of these strings occurs in the network output,
+                      sampling is stopped but the string that triggered the stop
+                    <em>will be</em> included in the
+                      response. Note that the response may be longer than the stop string. For example, if
+                      the stop string is "Hel" and the network predicts the single-token response "Hello",
+                      sampling will be stopped but the response will still read "Hello".
+                  </dd>
+                  <dt><strong><code>rng_seed</code></strong></dt>
+                  <dd>See of the random number generator used to sample from the model outputs.</dd>
+                  <dt><strong><code>add_to_context</code></strong></dt>
+                  <dd>If true, the generated tokens will be added to the context.</dd>
+                  <dt><strong><code>return_attention</code></strong></dt>
+                  <dd>If true, returns the attention mask. Note that this can significantly
+                      increase the response size for long sequences.
+                  </dd>
+                  <dt><strong><code>allowed_tokens</code></strong></dt>
+                  <dd>If set, only these tokens can be sampled. Invalid input tokens are
+                      ignored. Only one of <code>allowed_tokens</code> and
+                    <code>disallowed_tokens</code> must be set.
+                  </dd>
+                  <dt><strong><code>disallowed_tokens</code></strong></dt>
+                  <dd>If set, these tokens cannot be sampled. Invalid input tokens are
+                      ignored. Only one of <code>allowed_tokens</code> and
+                    <code>disallowed_tokens</code> must be set.
+                  </dd>
+                  <dt><strong><code>augment_tokens</code></strong></dt>
+                  <dd>If true, strings passed to <code>stop_tokens</code>,
+                    <code>allowed_tokens</code> and
+                    <code>disallowed_tokens</code> will be augmented to include both the passed token and the
+                      version with leading whitespace. This is useful because most words have two
+                      corresponding vocabulary entries: one with leading whitespace and one without.
+                  </dd>
+                </dl>
+                <h2 id="returns">Returns</h2>
+                <p>The generated text.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">async def sample(
+    self,
+    max_len: int = 256,
+    temperature: float = 1.0,
+    nucleus_p: float = 0.7,
+    stop_tokens: Optional[list[str]] = None,
+    stop_strings: Optional[list[str]] = None,
+    rng_seed: Optional[int] = None,
+    add_to_context: bool = True,
+    return_attention: bool = False,
+    allowed_tokens: Optional[Sequence[Union[int, str]]] = None,
+    disallowed_tokens: Optional[Sequence[Union[int, str]]] = None,
+    augment_tokens: bool = True,
+) -&gt; SampleResult:
+    &#34;&#34;&#34;Generates a model response based on the current prompt.
+
+    The current prompt consists of all text that has been added to the prompt either since the
+    beginning of the program or since the last call to `clear_prompt`.
+
+    Args:
+        max_len: Maximum number of tokens to generate.
+        temperature: Temperature of the final softmax operation. The lower the temperature, the
+            lower the variance of the token distribution. In the limit, the distribution collapses
+            onto the single token with the highest probability.
+        nucleus_p: Threshold of the Top-P sampling technique: We rank all tokens by their
+            probability and then only actually sample from the set of tokens that ranks in the
+            Top-P percentile of the distribution.
+        stop_tokens: A list of strings, each of which will be mapped independently to a single
+            token. If a string does not map cleanly to one token, it will be silently ignored.
+            If the network samples one of these tokens, sampling is stopped and the stop token
+            *is not* included in the response.
+        stop_strings: A list of strings. If any of these strings occurs in the network output,
+            sampling is stopped but the string that triggered the stop *will be* included in the
+            response. Note that the response may be longer than the stop string. For example, if
+            the stop string is &#34;Hel&#34; and the network predicts the single-token response &#34;Hello&#34;,
+            sampling will be stopped but the response will still read &#34;Hello&#34;.
+        rng_seed: See of the random number generator used to sample from the model outputs.
+        add_to_context: If true, the generated tokens will be added to the context.
+        return_attention: If true, returns the attention mask. Note that this can significantly
+            increase the response size for long sequences.
+        allowed_tokens: If set, only these tokens can be sampled. Invalid input tokens are
+            ignored. Only one of `allowed_tokens` and `disallowed_tokens` must be set.
+        disallowed_tokens: If set, these tokens cannot be sampled. Invalid input tokens are
+            ignored. Only one of `allowed_tokens` and `disallowed_tokens` must be set.
+        augment_tokens: If true, strings passed to `stop_tokens`, `allowed_tokens` and
+            `disallowed_tokens` will be augmented to include both the passed token and the
+            version with leading whitespace. This is useful because most words have two
+            corresponding vocabulary entries: one with leading whitespace and one without.
+
+    Returns:
+        The generated text.
+    &#34;&#34;&#34;
+    if max_len is None and not stop_tokens:
+        raise ValueError(&#34;Must provide either max_len or stop_tokens when calling `generate`.&#34;)
+
+    if rng_seed is None:
+        rng_seed = self._get_next_rng_seed()
+
+    if max_len is not None:
+        print(
+            f&#34;Generating {max_len} tokens [seed={rng_seed}, temperature={temperature}, &#34;
+            f&#34;nucleus_p={nucleus_p}, stop_tokens={stop_tokens}, stop_strings={stop_strings}].&#34;
+        )
+
+    if augment_tokens:
+        if stop_tokens:
+            stop_tokens = stop_tokens + [f&#34;▁{t}&#34; for t in stop_tokens]
+        if allowed_tokens:
+            allowed_tokens = list(allowed_tokens) + [
+                f&#34;▁{t}&#34; for t in allowed_tokens if isinstance(t, str) and not t.startswith(&#34;▁&#34;)
+            ]
+        if disallowed_tokens:
+            disallowed_tokens = list(disallowed_tokens) + [
+                f&#34;▁{t}&#34;
+                for t in disallowed_tokens
+                if isinstance(t, str) and not t.startswith(&#34;▁&#34;)
+            ]
+
+    request = {
+        &#34;prompt&#34;: self.as_token_ids(),
+        &#34;settings&#34;: {
+            &#34;maxLen&#34;: max_len or 0,
+            &#34;temperature&#34;: temperature,
+            &#34;nucleusP&#34;: nucleus_p,
+            &#34;stopTokens&#34;: stop_tokens or [],
+            &#34;stopStrings&#34;: stop_strings or [],
+            &#34;rngSeed&#34;: rng_seed,
+            &#34;allowedTokens&#34;: [_parse_input_token(t) for t in allowed_tokens or []],
+            &#34;disallowedTokens&#34;: [_parse_input_token(t) for t in disallowed_tokens or []],
+        },
+        &#34;returnAttention&#34;: return_attention,
+        &#34;modelName&#34;: self.model_name,
+    }
+
+    args = pyodide.ffi.create_proxy(request)
+    iterator = js.generate(args)
+
+    result = SampleResult(request)
+
+    while True:
+        obj = await iterator.next()
+        if obj.done:
+            break
+
+        token_proto = obj.value.to_py()
+        result.append(Token.from_proto_dict(token_proto))
+
+        if add_to_context:
+            self.body.append(result.tokens[-1])
+
+        # Sync the token to the UI thread.
+        request = {
+            &#34;contextId&#34;: self.context_id,
+            &#34;tokens&#34;: [token_proto],
+        }
+        await js.pushTokens(pyodide.ffi.create_proxy(request))
+
+    result.print_progress()
+    return result</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.Context.select_model"><code class="name flex">
+              <span>def <span
+                class="ident">select_model</span></span>(<span>self, model_name: str)</span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Selects the model name for this context.</p>
+                <p>The model name can only be set before any tokens have been added to this context.</p>
+                <h2 id="args">Args</h2>
+                <dl>
+                  <dt><strong><code>model_name</code></strong></dt>
+                  <dd>Name of the model to use.</dd>
+                </dl>
+              </div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">def select_model(self, model_name: str):
+    &#34;&#34;&#34;Selects the model name for this context.
+
+    The model name can only be set before any tokens have been added to this context.
+
+    Args:
+        model_name: Name of the model to use.
+    &#34;&#34;&#34;
+    if self.tokens:
+        raise RuntimeError(
+            &#34;Cannot change the model name of a non-empty context. A context &#34;
+            &#34;stores token sequences and different models may use different &#34;
+            &#34;tokenizers. Hence, using tokens across models leads to undefined &#34;
+            &#34;behavior. If you want to use multiple models in the same prompt, &#34;
+            &#34;consider using a @prompt_fn.&#34;
+        )
+    self.model_name = model_name</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.Context.set_title"><code class="name flex">
+              <span>async def <span
+                class="ident">set_title</span></span>(<span>self, title: str)</span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Sets the title of the context, which is shown in the UI.</p>
+              </div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">async def set_title(self, title: str):
+    &#34;&#34;&#34;Sets the title of the context, which is shown in the UI.&#34;&#34;&#34;
+    request = {
+        &#34;contextId&#34;: self.context_id,
+        &#34;title&#34;: title,
+    }
+    await js.setContextTitle(pyodide.ffi.create_proxy(request))</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.Context.tokenize"><code class="name flex">
+              <span>async def <span class="ident">tokenize</span></span>(<span>self, text: str) ‑> list[<a
+              href="#prompt_ide.Token" title="prompt_ide.Token">Token</a>]</span>
+            </code></dt>
+            <dd>
+              <div class="desc">
+                <p>Tokenizes the given text and returns a list of individual tokens.</p>
+                <h2 id="args">Args</h2>
+                <dl>
+                  <dt><strong><code>text</code></strong></dt>
+                  <dd>Text to tokenize.</dd>
+                </dl>
+                <h2 id="returns">Returns</h2>
+                <p>List of tokens. The log probability on the logit is initialized to 0.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">async def tokenize(self, text: str) -&gt; list[Token]:
+    &#34;&#34;&#34;Tokenizes the given text and returns a list of individual tokens.
+
+    Args:
+        text: Text to tokenize.
+
+    Returns:
+        List of tokens. The log probability on the logit is initialized to 0.
+    &#34;&#34;&#34;
+    result = await self._tokenize(text)
+    return [Token.from_proto_dict(d) for d in result]</code></pre>
+              </details>
+            </dd>
+          </dl>
+        </dd>
+        <dt id="prompt_ide.SampleResult"><code class="flex name class">
+          <span>class <span class="ident">SampleResult</span></span>
+          <span>(</span><span>request: dict = &lt;module &#x27;dataclasses&#x27; from &#x27;/opt/homebrew/Cellar/<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c2c25283433321c6f726d6c">[email&#160;protected]</a>/3.10.13_1/Frameworks/Python.framework/Versions/3.10/lib/python3.10/dataclasses.py&#x27;&gt;, tokens: list[<a
+          href="#prompt_ide.Token" title="prompt_ide.Token">Token</a>] = &lt;factory&gt;, start_time: float = &lt;factory&gt;, first_token_time: Optional[float] = None, end_time: Optional[float] = None)</span>
+        </code></dt>
+        <dd>
+          <div class="desc"><p>Holds the results of a sampling call.</p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">@dataclasses.dataclass
+class SampleResult:
+    &#34;&#34;&#34;Holds the results of a sampling call.&#34;&#34;&#34;
+
+    # The actual request made to the sampling API. Note that these fields may be unstable and are
+    # subject to change in the future.
+    request: dict = dataclasses
+
+    # The number of tokens sampled.
+    tokens: list[Token] = dataclasses.field(default_factory=list)
+    # When sampling was started.
+    start_time: float = dataclasses.field(default_factory=time.time)
+    # Time when the first token was added.
+    first_token_time: Optional[float] = None
+    # When sampling finished.
+    end_time: Optional[float] = None
+
+    def as_string(self) -&gt; str:
+        &#34;&#34;&#34;Returns a string representation of this context.&#34;&#34;&#34;
+        return &#34;&#34;.join(t.token_str for t in self.tokens)
+
+    def append(self, token: Token):
+        &#34;&#34;&#34;Adds a token to the result and reports progress in the terminal.&#34;&#34;&#34;
+        self.tokens.append(token)
+        self.end_time = time.time()
+        if len(self.tokens) == 1:
+            self.first_token_time = time.time()
+            duration = (self.first_token_time - self.start_time) * 1000
+            print(f&#34;Sampled first token after {duration:1.2f}ms.&#34;)
+        elif (len(self.tokens) + 1) % 10 == 0:
+            self.print_progress()
+
+    def print_progress(self):
+        &#34;&#34;&#34;Prints the sampling progress to stdout.&#34;&#34;&#34;
+        if len(self.tokens) &gt; 1:
+            duration = self.end_time - self.first_token_time
+            speed = (len(self.tokens) - 1) / duration
+            print(f&#34;Sampled {len(self.tokens)} tokens. &#34; f&#34;{speed:1.2f} tokens/s&#34;)</code></pre>
+          </details>
+          <h3>Class variables</h3>
+          <dl>
+            <dt id="prompt_ide.SampleResult.end_time"><code class="name">var <span
+              class="ident">end_time</span> : Optional[float]</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.SampleResult.first_token_time"><code class="name">var <span
+              class="ident">first_token_time</span> : Optional[float]</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.SampleResult.request"><code class="name">var <span
+              class="ident">request</span> : dict</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.SampleResult.start_time"><code class="name">var <span
+              class="ident">start_time</span> : float</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.SampleResult.tokens"><code class="name">var <span
+              class="ident">tokens</span> : list[<a href="#prompt_ide.Token"
+                                                    title="prompt_ide.Token">Token</a>]</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+          </dl>
+          <h3>Methods</h3>
+          <dl>
+            <dt id="prompt_ide.SampleResult.append"><code class="name flex">
+              <span>def <span class="ident">append</span></span>(<span>self, token: <a
+              href="#prompt_ide.Token" title="prompt_ide.Token">Token</a>)</span>
+            </code></dt>
+            <dd>
+              <div class="desc">
+                <p>Adds a token to the result and reports progress in the terminal.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">def append(self, token: Token):
+    &#34;&#34;&#34;Adds a token to the result and reports progress in the terminal.&#34;&#34;&#34;
+    self.tokens.append(token)
+    self.end_time = time.time()
+    if len(self.tokens) == 1:
+        self.first_token_time = time.time()
+        duration = (self.first_token_time - self.start_time) * 1000
+        print(f&#34;Sampled first token after {duration:1.2f}ms.&#34;)
+    elif (len(self.tokens) + 1) % 10 == 0:
+        self.print_progress()</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.SampleResult.as_string"><code class="name flex">
+              <span>def <span class="ident">as_string</span></span>(<span>self) ‑> str</span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Returns a string representation of this context.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">def as_string(self) -&gt; str:
+    &#34;&#34;&#34;Returns a string representation of this context.&#34;&#34;&#34;
+    return &#34;&#34;.join(t.token_str for t in self.tokens)</code></pre>
+              </details>
+            </dd>
+            <dt id="prompt_ide.SampleResult.print_progress"><code class="name flex">
+              <span>def <span class="ident">print_progress</span></span>(<span>self)</span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Prints the sampling progress to stdout.</p></div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">def print_progress(self):
+    &#34;&#34;&#34;Prints the sampling progress to stdout.&#34;&#34;&#34;
+    if len(self.tokens) &gt; 1:
+        duration = self.end_time - self.first_token_time
+        speed = (len(self.tokens) - 1) / duration
+        print(f&#34;Sampled {len(self.tokens)} tokens. &#34; f&#34;{speed:1.2f} tokens/s&#34;)</code></pre>
+              </details>
+            </dd>
+          </dl>
+        </dd>
+        <dt id="prompt_ide.Token"><code class="flex name class">
+          <span>class <span class="ident">Token</span></span>
+          <span>(</span><span>token_id: int, token_str: str, prob: float, top_k: list['<a
+          href="#prompt_ide.Token" title="prompt_ide.Token">Token</a>'], attn_weights: list[float], token_type: int)</span>
+        </code></dt>
+        <dd>
+          <div class="desc">
+            <p>A token is an element of our vocabulary that has a unique index and string representation.</p>
+            <p>A token can either be sampled from a model or provided by the user (i.e. prompted). If the token
+               comes from the mode, we may have additional metadata such as its sampling probability, the
+               attention pattern used when sampling the token, and alternative tokens.</p></div>
+          <details class="source">
+            <summary>
+              <span>Expand source code</span>
+            </summary>
+            <pre><code class="python">@dataclasses.dataclass(frozen=True)
+class Token:
+    &#34;&#34;&#34;A token is an element of our vocabulary that has a unique index and string representation.
+
+    A token can either be sampled from a model or provided by the user (i.e. prompted). If the token
+    comes from the mode, we may have additional metadata such as its sampling probability, the
+    attention pattern used when sampling the token, and alternative tokens.
+    &#34;&#34;&#34;
+
+    # The integer representation of the token. Corresponds to its index in the vocabulary.
+    token_id: int
+    # The string representation of the token. Corresponds to its value in the vocabulary.
+    token_str: str
+    # If this token was sampled, the token sampling probability. 0 if not sampled.
+    prob: float
+    # If this token was sampled, alternative tokens that could have been sampled instead.
+    top_k: list[&#34;Token&#34;]
+    # If this token was sampled with the correct options, the token&#39;s attention pattern. The array
+    # contains one value for every token in the context.
+    attn_weights: list[float]
+    # 1 if this token was created by a user and 2 if it was created by model.
+    token_type: int
+
+    @classmethod
+    def from_proto_dict(cls, values: dict) -&gt; &#34;Token&#34;:
+        &#34;&#34;&#34;Converts the protobuffer dictionary to a `Token` instance.&#34;&#34;&#34;
+        return Token(
+            token_id=values[&#34;finalLogit&#34;][&#34;tokenId&#34;],
+            token_str=values[&#34;finalLogit&#34;][&#34;stringToken&#34;],
+            prob=values[&#34;finalLogit&#34;][&#34;prob&#34;],
+            top_k=[
+                Token.from_proto_dict(
+                    {&#34;finalLogit&#34;: l, &#34;topK&#34;: [], &#34;attention&#34;: [], &#34;tokenType&#34;: _MODEL}
+                )
+                for l in values[&#34;topK&#34;]
+            ],
+            attn_weights=values[&#34;attention&#34;],
+            token_type=values[&#34;tokenType&#34;],
+        )</code></pre>
+          </details>
+          <h3>Class variables</h3>
+          <dl>
+            <dt id="prompt_ide.Token.attn_weights"><code class="name">var <span
+              class="ident">attn_weights</span> : list[float]</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.Token.prob"><code class="name">var <span
+              class="ident">prob</span> : float</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.Token.token_id"><code class="name">var <span
+              class="ident">token_id</span> : int</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.Token.token_str"><code class="name">var <span
+              class="ident">token_str</span> : str</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.Token.token_type"><code class="name">var <span
+              class="ident">token_type</span> : int</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+            <dt id="prompt_ide.Token.top_k"><code class="name">var <span
+              class="ident">top_k</span> : list['<a href="#prompt_ide.Token"
+                                                    title="prompt_ide.Token">Token</a>']</code></dt>
+            <dd>
+              <div class="desc"></div>
+            </dd>
+          </dl>
+          <h3>Static methods</h3>
+          <dl>
+            <dt id="prompt_ide.Token.from_proto_dict"><code class="name flex">
+              <span>def <span class="ident">from_proto_dict</span></span>(<span>values: dict) ‑> <a
+              href="#prompt_ide.Token" title="prompt_ide.Token">Token</a></span>
+            </code></dt>
+            <dd>
+              <div class="desc"><p>Converts the protobuffer dictionary to a <code><a
+                href="#prompt_ide.Token" title="prompt_ide.Token">Token</a></code> instance.</p>
+              </div>
+              <details class="source">
+                <summary>
+                  <span>Expand source code</span>
+                </summary>
+                <pre><code class="python">@classmethod
+def from_proto_dict(cls, values: dict) -&gt; &#34;Token&#34;:
+    &#34;&#34;&#34;Converts the protobuffer dictionary to a `Token` instance.&#34;&#34;&#34;
+    return Token(
+        token_id=values[&#34;finalLogit&#34;][&#34;tokenId&#34;],
+        token_str=values[&#34;finalLogit&#34;][&#34;stringToken&#34;],
+        prob=values[&#34;finalLogit&#34;][&#34;prob&#34;],
+        top_k=[
+            Token.from_proto_dict(
+                {&#34;finalLogit&#34;: l, &#34;topK&#34;: [], &#34;attention&#34;: [], &#34;tokenType&#34;: _MODEL}
+            )
+            for l in values[&#34;topK&#34;]
+        ],
+        attn_weights=values[&#34;attention&#34;],
+        token_type=values[&#34;tokenType&#34;],
+    )</code></pre>
+              </details>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+    </section>
+  </article>
+  <nav id="sidebar">
+    <h1>Index</h1>
+    <div class="toc">
+      <ul></ul>
+    </div>
+    <ul id="index">
+      <li><h3><a href="#header-functions">Functions</a></h3>
+        <ul class="two-column">
+          <li><code><a href="#prompt_ide.as_string"
+                       title="prompt_ide.as_string">as_string</a></code></li>
+          <li><code><a href="#prompt_ide.as_token_ids"
+                       title="prompt_ide.as_token_ids">as_token_ids</a></code></li>
+          <li><code><a href="#prompt_ide.clone" title="prompt_ide.clone">clone</a></code></li>
+          <li><code><a href="#prompt_ide.create_context"
+                       title="prompt_ide.create_context">create_context</a></code></li>
+          <li><code><a href="#prompt_ide.force_context"
+                       title="prompt_ide.force_context">force_context</a></code></li>
+          <li><code><a href="#prompt_ide.get_context" title="prompt_ide.get_context">get_context</a></code>
+          </li>
+          <li><code><a href="#prompt_ide.prompt" title="prompt_ide.prompt">prompt</a></code></li>
+          <li><code><a href="#prompt_ide.prompt_fn"
+                       title="prompt_ide.prompt_fn">prompt_fn</a></code></li>
+          <li><code><a href="#prompt_ide.randomize_rng_seed"
+                       title="prompt_ide.randomize_rng_seed">randomize_rng_seed</a></code></li>
+          <li><code><a href="#prompt_ide.read_file"
+                       title="prompt_ide.read_file">read_file</a></code></li>
+          <li><code><a href="#prompt_ide.sample" title="prompt_ide.sample">sample</a></code></li>
+          <li><code><a href="#prompt_ide.select_model"
+                       title="prompt_ide.select_model">select_model</a></code></li>
+          <li><code><a href="#prompt_ide.set_title"
+                       title="prompt_ide.set_title">set_title</a></code></li>
+          <li><code><a href="#prompt_ide.user_input"
+                       title="prompt_ide.user_input">user_input</a></code></li>
+        </ul>
+      </li>
+      <li><h3><a href="#header-classes">Classes</a></h3>
+        <ul>
+          <li>
+            <h4><code><a href="#prompt_ide.Context" title="prompt_ide.Context">Context</a></code>
+            </h4>
+            <ul class="two-column">
+              <li><code><a href="#prompt_ide.Context.as_string"
+                           title="prompt_ide.Context.as_string">as_string</a></code></li>
+              <li><code><a href="#prompt_ide.Context.as_token_ids"
+                           title="prompt_ide.Context.as_token_ids">as_token_ids</a></code></li>
+              <li><code><a href="#prompt_ide.Context.body" title="prompt_ide.Context.body">body</a></code>
+              </li>
+              <li><code><a href="#prompt_ide.Context.children"
+                           title="prompt_ide.Context.children">children</a></code></li>
+              <li><code><a href="#prompt_ide.Context.clone"
+                           title="prompt_ide.Context.clone">clone</a></code></li>
+              <li><code><a href="#prompt_ide.Context.context_id"
+                           title="prompt_ide.Context.context_id">context_id</a></code></li>
+              <li><code><a href="#prompt_ide.Context.create_context"
+                           title="prompt_ide.Context.create_context">create_context</a></code></li>
+              <li><code><a href="#prompt_ide.Context.model_name"
+                           title="prompt_ide.Context.model_name">model_name</a></code></li>
+              <li><code><a href="#prompt_ide.Context.next_rng_seed"
+                           title="prompt_ide.Context.next_rng_seed">next_rng_seed</a></code></li>
+              <li><code><a href="#prompt_ide.Context.parent"
+                           title="prompt_ide.Context.parent">parent</a></code></li>
+              <li><code><a href="#prompt_ide.Context.prompt"
+                           title="prompt_ide.Context.prompt">prompt</a></code></li>
+              <li><code><a href="#prompt_ide.Context.randomize_rng_seed"
+                           title="prompt_ide.Context.randomize_rng_seed">randomize_rng_seed</a></code>
+              </li>
+              <li><code><a href="#prompt_ide.Context.sample"
+                           title="prompt_ide.Context.sample">sample</a></code></li>
+              <li><code><a href="#prompt_ide.Context.select_model"
+                           title="prompt_ide.Context.select_model">select_model</a></code></li>
+              <li><code><a href="#prompt_ide.Context.set_title"
+                           title="prompt_ide.Context.set_title">set_title</a></code></li>
+              <li><code><a href="#prompt_ide.Context.tokenize"
+                           title="prompt_ide.Context.tokenize">tokenize</a></code></li>
+              <li><code><a href="#prompt_ide.Context.tokens"
+                           title="prompt_ide.Context.tokens">tokens</a></code></li>
+            </ul>
+          </li>
+          <li>
+            <h4><code><a href="#prompt_ide.SampleResult"
+                         title="prompt_ide.SampleResult">SampleResult</a></code></h4>
+            <ul class="two-column">
+              <li><code><a href="#prompt_ide.SampleResult.append"
+                           title="prompt_ide.SampleResult.append">append</a></code></li>
+              <li><code><a href="#prompt_ide.SampleResult.as_string"
+                           title="prompt_ide.SampleResult.as_string">as_string</a></code></li>
+              <li><code><a href="#prompt_ide.SampleResult.end_time"
+                           title="prompt_ide.SampleResult.end_time">end_time</a></code></li>
+              <li><code><a href="#prompt_ide.SampleResult.first_token_time"
+                           title="prompt_ide.SampleResult.first_token_time">first_token_time</a></code>
+              </li>
+              <li><code><a href="#prompt_ide.SampleResult.print_progress"
+                           title="prompt_ide.SampleResult.print_progress">print_progress</a></code>
+              </li>
+              <li><code><a href="#prompt_ide.SampleResult.request"
+                           title="prompt_ide.SampleResult.request">request</a></code></li>
+              <li><code><a href="#prompt_ide.SampleResult.start_time"
+                           title="prompt_ide.SampleResult.start_time">start_time</a></code></li>
+              <li><code><a href="#prompt_ide.SampleResult.tokens"
+                           title="prompt_ide.SampleResult.tokens">tokens</a></code></li>
+            </ul>
+          </li>
+          <li>
+            <h4><code><a href="#prompt_ide.Token" title="prompt_ide.Token">Token</a></code></h4>
+            <ul class="two-column">
+              <li><code><a href="#prompt_ide.Token.attn_weights"
+                           title="prompt_ide.Token.attn_weights">attn_weights</a></code></li>
+              <li><code><a href="#prompt_ide.Token.from_proto_dict"
+                           title="prompt_ide.Token.from_proto_dict">from_proto_dict</a></code></li>
+              <li><code><a href="#prompt_ide.Token.prob"
+                           title="prompt_ide.Token.prob">prob</a></code></li>
+              <li><code><a href="#prompt_ide.Token.token_id"
+                           title="prompt_ide.Token.token_id">token_id</a></code></li>
+              <li><code><a href="#prompt_ide.Token.token_str"
+                           title="prompt_ide.Token.token_str">token_str</a></code></li>
+              <li><code><a href="#prompt_ide.Token.token_type"
+                           title="prompt_ide.Token.token_type">token_type</a></code></li>
+              <li><code><a href="#prompt_ide.Token.top_k"
+                           title="prompt_ide.Token.top_k">top_k</a></code></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</main>
+<footer id="footer">
+  <p>Generated by <a href="https://pdoc3.github.io/pdoc"
+                     title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.
+  </p>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
